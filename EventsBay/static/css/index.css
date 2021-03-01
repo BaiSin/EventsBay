@@ -1,0 +1,39 @@
+ .container {
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+ }
+
+ .card {
+     position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 20%;
+    margin: 10px;
+    text-align: center;
+    font-family: arial;
+  }
+  
+  .price {
+    color: grey;
+    font-size: 22px;
+  }
+
+  .like-btn {
+      display: block;
+      margin: 0;
+      padding: 5px;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      right: 10px;
+      top: 45%;
+      background: white;
+      border-radius: 50%;
+      font-size: 40px;
+  }
+
+  .like-btn:hover {
+    cursor: pointer;
+  }
+
+  

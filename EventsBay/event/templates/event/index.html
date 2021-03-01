@@ -1,0 +1,57 @@
+{% extends 'event/navbar.html' %}
+
+{% block title %} EventsBay {% endblock %}
+
+{% block css %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    {% for event in events %}
+    <div class="card">
+        <img src="/media/{{event.image}}" alt="Event Banner" style="width:100%; height: 50%;">
+        <button value="{{event.id}}" class="like" name="{{event.id}}">
+            {% if request.user.id == event.is_liked %}
+            <i class="fas fa-heart like-btn" id="{{event.id}}"></i>
+            {% else %}
+            <i class="far fa-heart like-btn" id="{{event.id}}"></i>
+            {% endif %}
+        </button>
+        <h1>{{event.event_name}}</h1>
+        <p class="price">{{event.date}}</p>
+        <p>{{event.data|slice:'0:100'}}...</p>
+    </div>
+    {% endfor %}
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.like', function (e) {
+        var id = $(this).attr('name')
+        $.ajax({
+            type: "POST",
+            url: "{% url 'event:like' %}",
+            data: {
+                'id': id,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                action: 'post'
+            },
+            success: function (json) {
+                if (json['result'] == 'like') {
+                    document.getElementById(id).classList.remove('far');
+                    document.getElementById(id).classList.add('fas');
+                }
+                else{
+                    document.getElementById(id).classList.remove('fas');
+                    document.getElementById(id).classList.add('far');  
+                }
+            },
+            error: function () {
+            }
+        });
+    })
+</script>
+
+{% endblock %}

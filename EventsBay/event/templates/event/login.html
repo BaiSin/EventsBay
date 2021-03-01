@@ -1,0 +1,31 @@
+{% extends 'event/navbar.html' %}
+
+{% block title %} Log In {% endblock %}
+
+{% block css %} {% load static %} <link rel="stylesheet" href="{% static 'css/login.css' %}"> {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Welcome</h2>
+    <p>Login to your account</p>
+    <form action="/event/login/" method="POST"> {% csrf_token %}
+        <div class="form">
+            <input type="email" class="input-field" name="username"  id="username" placeholder="Email address">
+        </div>
+        <div class="form">
+            <input type="password" class="input-field" id="password" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn">Log In</button>
+    </form>
+    <p id="login-btn"><a href="/event/signin">Sign In Instead</a></p>
+</div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}

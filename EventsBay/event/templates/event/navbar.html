@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <script src="https://kit.fontawesome.com/a359bd4aef.js" crossorigin="anonymous"></script>
+    {% block css %} {% endblock %}
+</head>
+
+<body>
+    <nav id="navbar">
+        <a class="links main" href="/event">EventsBay</a>
+        <input class="searchbox" type="text" placeholder=" Search events">
+        <div class="right">
+            <a class="links" href="/event/create">Create Event</a>
+            <a class="links" href="/event/liked">Liked Events</a>
+            {% if user.is_authenticated %}
+            <div class="dropdown-menu">
+                <button class="menu-btn">{{ user.username }}</button>
+                <div class="menu-content">
+                    <a class="links-hidden" href="#">Liked Events</a>
+                    <a class="links-hidden" href="/event/logout">Logout</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="dropdown-menu">
+                <button class="menu-btn">Organise</button>
+                <div class="menu-content">
+                    <a class="links-hidden" href="#">Overview</a>
+                    <a class="links-hidden" href="#">Pricing</a>
+                    <a class="links-hidden" href="#">Blog</a>
+                    <a class="links-hidden" href="#">Resources</a>
+                </div>
+            </div>
+            <div class="dropdown-menu">
+                <button class="menu-btn">Help</button>
+                <div class="menu-content">
+                    <a class="links-hidden" href="#">How it works</a>
+                    <a class="links-hidden" href="#">What does it costs to create an event?</a>
+                    <a class="links-hidden" href="#">Where are my tickets?</a>
+                    <a class="links-hidden" href="#">How to contact the event organiser?</a>
+                    <hr>
+                    <a class="links-hidden" href="#">Help Center</a>
+                </div>
+            </div>
+            <a class="links" href="/event/login">Log In</a>
+            {% endif %}
+        </div>
+    </nav>
+    <hr>
+    {% block body %} {% endblock %}
+</body>
+
+</html>
