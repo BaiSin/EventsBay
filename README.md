@@ -10,6 +10,10 @@
 ![login](images/login.jpg)
 ***
 
+### Create Event Page
+###### Create Event URL :`http://127.0.0.1:8000/event/create/`
+![create](images/create.jpg)
+
 ### Index Page
 ###### Index Page URL : `http://127.0.0.1:8000/event/`
 ![index](images/index.jpg)
