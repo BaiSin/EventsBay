@@ -13,7 +13,7 @@
     <div class="card">
         <img src="/media/{{event.image}}" alt="Event Banner" style="width:100%; height: 50%;">
         <button value="{{event.id}}" class="like" name="{{event.id}}">
-            {% if request.user.id == event.is_liked %}
+            {% if event in likedEvent %}
             <i class="fas fa-heart like-btn" id="{{event.id}}"></i>
             {% else %}
             <i class="far fa-heart like-btn" id="{{event.id}}"></i>

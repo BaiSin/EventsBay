@@ -11,7 +11,8 @@ from .forms import EventForm
 # Create your views here.
 def index(request):
     event = eventlist.objects.all()
-    return render(request, 'event/index.html', {'events':event})
+    likedEvent = eventlist.objects.filter(is_liked=request.user.id)
+    return render(request, 'event/index.html', {'events':event, 'likedEvent':likedEvent})
 
 def signin(request):
     if request.method=="POST":
